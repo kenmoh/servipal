@@ -20,3 +20,22 @@ export const offers = [
       "ServiPal also offers a peer-to-peer marketplace where you can buy and sell items. Our escrow system ensures that payments are held securely until the buyer confirms receipt of the item. This ensures fairness and transparency for both buyers and sellers.",
   },
 ];
+
+export const welcome = `Welcome to ServiPal, your ultimate solution for connecting with local
+                    service providers across a range of essential everyday needs. Our
+                    platform is designed to offer a seamless experience, bringing together
+                    multiple vendours to provide top-quality item delivery, food ordering,
+                    laundry services, and a secure e-commerce marketplace.`;
+
+export const serviPal = ` At ServiPal, we don't just offer services — we connect you to the
+                    vendours that meet your unique needs. While we facilitate the
+                    platform, the actual services are delivered by trusted local
+                    providers. Our goal is to empower both customers and vendours through
+                    a secure, convenient, and efficient platform that simplifies everyday
+                    tasks.`;
+export const mission = ` Our mission is to provide a reliable and versatile
+                    platform that bridges the gap between customers and vendours, ensuring
+                    a high level of convenience, transparency, and security in all
+                    transactions. We are committed to supporting local businesses while
+                    giving users access to essential services from the comfort of their
+                    homes.`;
