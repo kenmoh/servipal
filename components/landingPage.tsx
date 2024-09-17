@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ShoppingBag, Utensils, Shirt, Shield, Clock, HeartHandshake, Bike, Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import DropDownInput from './DropDownInput'
 
 
 const navItems = [
@@ -205,15 +206,8 @@ export function LandingPageComponent() {
                 className="bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500"
                 aria-label="Email for newsletter"
               />
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500"
-                aria-label="Email for newsletter"
-              />
+
+              <DropDownInput />
               <Button type="submit" className="bg-orange-500 text-white hover:bg-orange-600 transition-colors">
                 Join Now
               </Button>
