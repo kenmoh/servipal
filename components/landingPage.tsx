@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ShoppingBag, Utensils, Truck, Shirt, Shield, Clock, HeartHandshake } from "lucide-react"
@@ -58,6 +58,7 @@ const features = [
 
 export function LandingPageComponent() {
   const [email, setEmail] = useState('')
+  const [isScrolled, setIsScrolled] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -66,10 +67,38 @@ export function LandingPageComponent() {
     setEmail('')
   }
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100)
+    }
+
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    const handleLinkClick = (e: MouseEvent) => {
+      const target = e.target as HTMLAnchorElement;
+      if (target.hash && target.origin + target.pathname === window.location.href) {
+        e.preventDefault();
+        const targetElement = document.querySelector(target.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll)
+    document.addEventListener('click', handleLinkClick);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('click', handleLinkClick);
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-orange-900">
       <div className="container mx-auto px-4 py-8">
-        <header className="flex justify-between items-center mb-12">
+        <header className={`flex justify-between items-center mb-12 fixed py-5 px-10 top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900/70 backdrop-blur-md shadow-md' : ''}`}>
           <div className="text-orange-400 text-4xl font-bold">ServiPal</div>
           <nav>
             <ul className="flex space-x-6">
@@ -96,15 +125,17 @@ export function LandingPageComponent() {
 
 
 
-          <h2 className="text-4xl font-bold text-white mb-8">From Errands to Essentials: Our Services Cover It All</h2>
-          <section id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-            {data.map((service, index) => (
-              <div key={index} className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg p-6 text-gray-300 border border-gray-700 transition-all hover:bg-opacity-70 hover:scale-105">
-                {service.icon}
-                <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-            ))}
+          <section id="services">
+            <h2 className="text-4xl font-bold text-white mb-8">From Errands to Essentials: Our Services Cover It All</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+              {data.map((service, index) => (
+                <div key={index} className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg p-6 text-gray-300 border border-gray-700 transition-all hover:bg-opacity-70 hover:scale-105">
+                  {service.icon}
+                  <h3 className="text-xl font-semibold mb-2 text-white">{service.title}</h3>
+                  <p>{service.description}</p>
+                </div>
+              ))}
+            </div>
           </section>
 
           <section id="features" className=" mb-20">
@@ -144,6 +175,6 @@ export function LandingPageComponent() {
           <p>&copy; 2024 ServiPal. All rights reserved. Simplifying lives, one service at a time.</p>
         </footer>
       </div>
-    </div>
+    </div >
   )
 }
