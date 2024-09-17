@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { ShoppingBag, Utensils, Shirt, Shield, Clock, HeartHandshake, Bike, Menu } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import DropDownInput from './DropDownInput'
+import Link from 'next/link'
 
 
 const navItems = [
@@ -112,6 +113,7 @@ export function LandingPageComponent() {
           <div className="text-orange-400 text-2xl md:text-4xl font-bold">ServiPal</div>
           <nav className='hidden md:block'>
             <ul className="flex space-x-6">
+              <Link href={'/about'} className='text-gray-300 hover:text-orange-400 transition-colors'>About</Link>
               {navItems.map((item) => (
                 <li key={item.href}>
                   <a href={item.href}
@@ -122,7 +124,6 @@ export function LandingPageComponent() {
                   </a>
                 </li>
               ))}
-
             </ul>
           </nav>
           <Sheet>
@@ -134,6 +135,7 @@ export function LandingPageComponent() {
             <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-gray-900">
               <nav>
                 <ul className="flex flex-col space-y-4">
+                  <Link href={'/about'} className='text-gray-300 hover:text-orange-400 transition-colors'>About</Link>
                   {navItems.map((item) => (
                     <li key={item.href}>
                       <a
@@ -164,7 +166,6 @@ export function LandingPageComponent() {
               <Image src={'/online.png'} alt='ServiPal' width={3000} height={300} />
             </div>
           </section>
-
 
 
           <section id="services">

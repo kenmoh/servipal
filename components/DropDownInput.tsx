@@ -49,7 +49,7 @@ const DropDownInput = () => {
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-[200px] justify-between bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500"
+                    className="sm:flex-row md:[200px] justify-between bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500"
                 >
                     {value
                         ? userTypes.find((user) => user.value === value)?.label
@@ -57,7 +57,7 @@ const DropDownInput = () => {
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0 ">
+            <PopoverContent className="sm:flex-row md:w-[200px] p-0 ">
                 <Command className='bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500'>
                     <CommandInput placeholder="Service Type..." />
                     <CommandList className='bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500'>
