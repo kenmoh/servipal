@@ -30,7 +30,7 @@ const data = [
     icon: <ShoppingBag className="w-12 h-12 mb-4 text-orange-400" />,
     title: "Secure Shopping",
     description:
-      "Shop with peace of mind. Our escrow service ensures your money is safe until you're satisfied. Goodbye to !",
+      "Shop with peace of mind. Our escrow service ensures your money is safe until you are satisfied.",
   },
 ];
 
