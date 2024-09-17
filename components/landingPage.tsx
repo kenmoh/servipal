@@ -30,7 +30,7 @@ const data = [
     icon: <ShoppingBag className="w-12 h-12 mb-4 text-orange-400" />,
     title: "Secure Shopping",
     description:
-      "Shop with peace of mind. Our escrow service ensures your money is safe until you are satisfied.",
+      "Shop with peace of mind. Our escrow service ensures your money is safe until you&apos;re satisfied. Goodbye to What I Ordered VS What I Get 😊 ",
   },
 ];
 
@@ -55,10 +55,11 @@ const features = [
       "Questions? Issues? Our friendly team is always here to help, day or night.",
   },
 ];
-
+const aboutText = "From doorstep deliveries to sparkling laundry, satisfying meals to secure shopping - we're your one-stop solution for modern living."
 export function LandingPageComponent() {
   const [email, setEmail] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -113,7 +114,7 @@ export function LandingPageComponent() {
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Transforming Errands into Ease</h1>
-              <p className="text-xl text-gray-300 mb-8">From doorstep deliveries to sparkling laundry, satisfying meals to secure shopping - we're your one-stop solution for modern living.</p>
+              <p className="text-xl text-gray-300 mb-8">{aboutText}</p>
               <Button className="bg-orange-500 text-white hover:bg-orange-600 text-lg px-8 py-8 rounded-full transition-colors">
                 Discover Ease
               </Button>
