@@ -12,7 +12,7 @@ const data = [
     icon: <Truck className="w-12 h-12 mb-4 text-orange-400" />,
     title: "Swift Delivery",
     description:
-      "From documents to gifts, we deliver it all with lightning speed. Your items, our priority.",
+      "From documents to gifts, our registered dispatch riders deliver it all with lightning speed. Your items, our priority.",
   },
   {
     icon: <Utensils className="w-12 h-12 mb-4 text-orange-400" />,
@@ -86,7 +86,7 @@ export function LandingPageComponent() {
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Transforming Errands into Ease</h1>
               <p className="text-xl text-gray-300 mb-8">From doorstep deliveries to sparkling laundry, satisfying meals to secure shopping - we're your one-stop solution for modern living.</p>
               <Button className="bg-orange-500 text-white hover:bg-orange-600 text-lg px-8 py-8 rounded-full transition-colors">
-                Simplify My Life
+                Discover Ease
               </Button>
             </div>
             <div className='w-full h-full'>
@@ -94,6 +94,9 @@ export function LandingPageComponent() {
             </div>
           </section>
 
+
+
+          <h2 className="text-4xl font-bold text-white mb-8">From Errands to Essentials: Our Services Cover It All</h2>
           <section id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
             {data.map((service, index) => (
               <div key={index} className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg p-6 text-gray-300 border border-gray-700 transition-all hover:bg-opacity-70 hover:scale-105">
