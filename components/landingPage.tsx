@@ -4,12 +4,19 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ShoppingBag, Utensils, Truck, Shirt, Shield, Clock, HeartHandshake } from "lucide-react"
+import { ShoppingBag, Utensils, Shirt, Shield, Clock, HeartHandshake, Bike, Menu } from "lucide-react"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
+
+const navItems = [
+  { href: "#services", label: "Services" },
+  { href: "#features", label: "Features" },
+  { href: "#contact", label: "Contact" },
+]
 
 const data = [
   {
-    icon: <Truck className="w-12 h-12 mb-4 text-orange-400" />,
+    icon: <Bike className="w-12 h-12 mb-4 text-orange-400" />,
     title: "Swift Delivery",
     description:
       "From documents to gifts, our registered dispatch riders deliver it all with lightning speed. Your items, our priority.",
@@ -30,7 +37,7 @@ const data = [
     icon: <ShoppingBag className="w-12 h-12 mb-4 text-orange-400" />,
     title: "Secure Shopping",
     description:
-      "Shop with peace of mind. Our escrow service ensures your money is safe until you&apos;re satisfied. Goodbye to What I Ordered VS What I Get 😊 ",
+      "Shop with peace of mind. Our escrow service ensures your money is safe until you're satisfied. Goodbye to What I Ordered VS What I Get! 😊 ",
   },
 ];
 
@@ -59,6 +66,7 @@ const aboutText = "From doorstep deliveries to sparkling laundry, satisfying mea
 export function LandingPageComponent() {
   const [email, setEmail] = useState('')
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -70,7 +78,7 @@ export function LandingPageComponent() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      setIsScrolled(window.scrollY > 10)
     }
 
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -100,20 +108,52 @@ export function LandingPageComponent() {
     <div className="min-h-screen w-full bg-gradient-to-br from-gray-900 via-gray-800 to-orange-900">
       <div className="container mx-auto px-4 py-8">
         <header className={`flex justify-between items-center mb-12 fixed py-5 px-10 top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900/70 backdrop-blur-md shadow-md' : ''}`}>
-          <div className="text-orange-400 text-4xl font-bold">ServiPal</div>
-          <nav>
+          <div className="text-orange-400 text-2xl md:text-4xl font-bold">ServiPal</div>
+          <nav className='hidden md:block'>
             <ul className="flex space-x-6">
-              <li><a href="#services" className="text-gray-300 hover:text-orange-400 transition-colors">Services</a></li>
-              <li><a href="#features" className="text-gray-300 hover:text-orange-400 transition-colors">Features</a></li>
-              <li><a href="#contact" className="text-gray-300 hover:text-orange-400 transition-colors">Contact</a></li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}
+                    className="text-gray-300 hover:text-orange-400 transition-colors"
+                    onClick={() => setIsMobileMenuOpen(true)}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+
             </ul>
           </nav>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6 text-gray-300" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px] bg-gray-900">
+              <nav>
+                <ul className="flex flex-col space-y-4">
+                  {navItems.map((item) => (
+                    <li key={item.href}>
+                      <a
+                        href={item.href}
+                        className="text-gray-300 hover:text-orange-400 transition-colors text-lg"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </header>
 
         <main>
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20 items-center">
             <div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">Transforming Errands into Ease</h1>
+              <h1 className="text-3xl mt-10 md:text-6xl font-bold text-white mb-6">Transforming Errands into Ease</h1>
               <p className="text-xl text-gray-300 mb-8">{aboutText}</p>
               <Button className="bg-orange-500 text-white hover:bg-orange-600 text-lg px-8 py-8 rounded-full transition-colors">
                 Discover Ease
@@ -127,7 +167,7 @@ export function LandingPageComponent() {
 
 
           <section id="services">
-            <h2 className="text-4xl font-bold text-white mb-8">From Errands to Essentials: Our Services Cover It All</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">From Errands to Essentials: Our Services Cover It All</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
               {data.map((service, index) => (
                 <div key={index} className="bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-lg rounded-lg p-6 text-gray-300 border border-gray-700 transition-all hover:bg-opacity-70 hover:scale-105">
@@ -140,7 +180,7 @@ export function LandingPageComponent() {
           </section>
 
           <section id="features" className=" mb-20">
-            <h2 className="text-4xl font-bold text-white mb-8">Experience the ServiPal Difference</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">Experience the ServiPal Difference</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
                 <div key={index} className="bg-gray-800 bg-opacity-30 backdrop-filter backdrop-blur-lg rounded-lg p-6 border border-gray-700 transition-all hover:bg-opacity-50">
@@ -156,6 +196,15 @@ export function LandingPageComponent() {
             <h2 className="text-3xl font-bold text-white mb-4">Join the waiting list</h2>
             <p className="text-gray-300 mb-6">Be the first to experience the future of service delivery. Get exclusive updates!</p>
             <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="bg-gray-800 bg-opacity-50 text-white placeholder-gray-400 border-gray-700 focus:ring-2 focus:ring-orange-500"
+                aria-label="Email for newsletter"
+              />
               <Input
                 type="email"
                 placeholder="Enter your email"
